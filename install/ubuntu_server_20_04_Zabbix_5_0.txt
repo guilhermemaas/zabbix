@@ -1,0 +1,83 @@
+// Aula 2 - Instalação via pacotes no Ubuntu Server
+
+Pré-requesitos:
+
+➔ Sistema Linux Ubuntu Server 20.04 LTS (ou superior)
+➔ 2 CPU
+➔ 2 GB RAM
+
+Link do repositório:
+
+http://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/
+
+Instalação:
+
+# add-apt-repository multiverse
+# apt update
+# apt install libmecab2
+
+# cd /usr/src
+
+# wget http://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1%2Bfocal_all.deb
+
+# dpkg -i zabbix*
+
+Instalação:
+
+# apt-get update 
+
+# apt-get install zabbix-server-mysql zabbix-frontend-php zabbix-agent zabbix-get php-mbstring php-bcmath zabbix-apache-conf
+
+- Sua senha de acesso ao BD será de seu usuário root,
+pois nessa versão eles usam o MariaDB no lugar do
+MySQL.
+
+Instalação do MariaDB:
+
+# mysql -uroot -p
+
+mysql> create database zabbix character set utf8 collate utf8_bin;
+
+mysql> grant all privileges on zabbix.* to zabbix@localhost identified by 'zabbix';
+
+mysql> quit;
+
+# zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix
+
+A senha é: zabbix
+
+# vim /etc/zabbix/zabbix_server.conf
+
+DBHost=localhost
+DBName=zabbix
+DBUser=zabbix
+DBPassword=zabbix
+
+# vim /etc/apache2/conf-available/zabbix.conf
+
+- Descomentar a seguinte linha:
+
+- php_value date.timezone Europe/Riga
+
+- Alterar para:
+
+- php_value date.timezone America/Sao_Paulo
+
+
+Agora, vamos dar um restart em todos os serviços:
+
+# systemctl restart zabbix-server zabbix-agent apache2
+
+# systemctl enable zabbix-server zabbix-agent apache2
+
+Acessar interface Web:
+
+http://<IP_do_host>/zabbix
+
+Login: Admin (com A maiúsculo)
+
+Senha: zabbix
+
+
+
+
