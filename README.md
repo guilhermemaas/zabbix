@@ -1,2 +1,2 @@
 # zabbix
-Tudo relacionado ao meu aprendizado de Zabbix(scripts, dicas, configurações, entre outros).
+Meu aprendizado com Zabbix(scripts, dicas, configurações, entre outros).
