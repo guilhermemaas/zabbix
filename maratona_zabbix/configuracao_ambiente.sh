@@ -37,6 +37,10 @@ select * from mysql.user;
 UPDATE mysql.user SET Super_Priv='Y' WHERE user='zabbix' AND host='10.0.0.51';
 flush privileges;
 #firewall-cmd --permanet --add-port=3306/tcp
+#Aceitar o MySQL para aceitar conexoes de outros servidores:
+    #Comentar a linha abaixo:
+    /etc/mysql/mariadb.conf.d/50-server.cnf
+    #bind-address            = 127.0.0.1
 #------------------------------------------
 #VM Docker:
 #------------------------------------------
