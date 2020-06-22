@@ -1,0 +1,27 @@
+#------------------------------------------
+#Zabbix Proxy-App:
+#------------------------------------------
+ProxyMode=0
+Server=<IP_SERVER>
+#Hostname=Zabbix Proxy
+EnableRemoteCommands=1
+DBName=/var/lib/zabbix/zabbix.db 
+DBUser=zabbix
+ProxyOfflineBuffer=24
+ConfigFrequency=300
+DataSenderFrequency=1
+
+#------------------------------------------
+#Zabbix Proxy Template para monitorar:
+#------------------------------------------
+Configuration > Templates > Buscar por Proxy > Template App Zabbix Proxy
+>Items. Zabbix Internal = Itens que monitoram internamente o server, ou proxy. Ou seja, os componentes do zabbix.
+Menos o Zabbix Front End.
+#Criar um Grupo de Hosts:
+Configuration > Host Groups > New > Group Name = Zabbix Proxies
+#Criar um Host do Zabbix Proxy que ja temos e vincula-lo ao grupo criado:
+Configuration > Hosts > New > 
+#Host=Hostname/system.hostname, Visible Name=Qualquer/Zabbix Proxy Redes App, Groups=Zabbix Proxies, Monitored by proxy: docker1
+#agent=127.0.0.1 Vai executar localmente la no server proxy.
+#Se deixar (no proxy), 127.0.0.1, sera o proprio zabbix server se monitorando.
+Aba Templates > Linkar o Template App Zabbix Proxy

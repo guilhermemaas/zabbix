@@ -126,4 +126,4 @@ vim zabbix_proxy.conf
     #No Front End do Zabbix > Administration > Proxies > New Proxy
     #Name=system.hostname / Mode=Active
     #Validar coluna Last Seen, caso OK, vai estar alguns segundos.
-    
+    systemctl restart zabbix-proxy #Reiniciar depois de alterar o conf.
