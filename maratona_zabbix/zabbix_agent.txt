@@ -1,0 +1,52 @@
+------------------------------------------
+Zabbix Agent
+------------------------------------------
+https://www.zabbix.com/documentation/current/manual/appendix/config/zabbix_agent2
+------------------------------------------
+Server:
+Pode ser o IP do Servidor, ou entao do Proxy.
+Ja nos Proxys, vai ser o IP do Servidor Zabbix.
+------------------------------------------
+#Server Active:
+Agente passivo, e ativo... Verificar. Pode ficar comentado.
+------------------------------------------
+Hostname: Deixar comentado. Verificar.
+Comentado vai pegar do item system.hostname
+------------------------------------------
+Timeout:
+30 seria um bom padrao. Por que pode ter algum script que demora mais que o padrao, que e 3s.
+------------------------------------------
+Include:
+Diretoricios adicionais onde o Zabbix Agent vai buscar por arquivos de configuracao.
+O padrao: /etc/zabbix/agent2.d/
+Arquivos *.conf
+O mais com e ter um user.parameter.conf -> Validar, a princpio usuario e senha do MySQL por exemplo.
+------------------------------------------
+EnableRemoteCommands:
+Permite que o Zabbix Proxy ou Zabbix Agent execute comandos dentro do servidor.
+A partir da versao 5.02 estara depreciado.
+Nas versoes mais novas: AllowKey, DennyKey
+------------------------------------------
+HostMetadataItem:
+Utilizado no processo de autoregistro.
+------------------------------------------
+------------------------------------------
+Resumo dos principais parametros:
+Server=IP
+ServerActive=IP
+#Hostname= Zabbix Server #Comentar
+HostMetadataItem=system.uname
+Timeout=30
+Include=mypath/.*conf
+AllowKey[*]
+DennyKey[*]
+EnableRemoteCommands - Ate a versao 5.0.1
+------------------------------------------
+------------------------------------------
+------------------------------------------
+Download Agente
+------------------------------------------
+repo.zabbix.com
+cat /proc/version #Versao do OS
+http://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix/
+http://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix/zabbix-agent_5.0.1-1%2Bbionic_amd64.deb

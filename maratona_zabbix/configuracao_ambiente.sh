@@ -1,4 +1,13 @@
 #UBUNTU SERVER 18.04
+#IPs:
+#VMs:
+    #Stack/Services Docker: 192.168.0.116 / firewall1
+        #Grafana:
+        #Zabbix-Server:
+        #Zabbix-FrontEnd:
+    #Proxy Server: 192.168.0.114 / docker1
+#MySQL:
+    #192.168.0.113 / ilhanublar-desktop
 #------------------------------------------
 #VM MySQL Zabbix DB:
 #------------------------------------------
@@ -31,6 +40,7 @@ flush privileges;
 #------------------------------------------
 #VM Docker:
 #------------------------------------------
+#https://docs.docker.com/engine/install/ubuntu/
 timedatectl status
 timedatectl list-timezones | grep Sao_Paulo
 timedatectl set-timezone America/Sao_Paulo
@@ -79,3 +89,41 @@ docker service ls
 #docker service ps --no-trunc {serviceName}
 #sudo ss --tcp --listening --processes --numeric | grep ":2377"
 #sudo readlink -f /proc/1229/exe
+docker service logs -f maratonazabbix_zabbix-server
+#IP VM:80 -> Zabbix
+#IP VM:3000 -> Grafana
+#------------------------------------------
+#Zabbix Proxy:
+#------------------------------------------
+apt install zabbix-proxy-sqlite3
+http://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix/zabbix-proxy-sqlite3_5.0.0-1%2Bbionic_amd64.deb
+https://www.zabbix.com/documentation/4.0/manual/installation/install_from_packages/debian_ubuntu
+cd /etc/zabbix
+mkdir /var/lib/zabbix
+cd /var/lib/
+chown zabbix. -R zabbix/
+cd /etc/zabbix/
+vim zabbix_proxy.conf
+    #Proxy operating mode:
+        #0 - proxy in the active mode: O proxy inicia a comunicacao com zabbix server.
+        #1 - proxy in the passive mode: O Server zabbix inicia a comunicacao com o proxy.
+        #Default = 0.
+    Server=192.168.0.116
+    #ServerPort=10051 #Pode deixar comentado, a requisicao quando chegar no server docker, vai direcionar para o container server-zabbix na porta 10051
+    #Hostname=Zabbix proxy #Pode deixar comentado, vai pegar do HostnameItem=system.hostname, que no caso seria o hostname do servidor.
+    EnableRemoteCommands=1 #No zabbix proxy nao foi depriciado esse comando como no agent.
+    DBName=/var/lib/zabbix/zabbix.db #TEm que remover quando for iniciar o server, ou atualizar.
+    DBUser=zabbix
+    #DBPassword e ignorado quando e SQLite.
+    #ProxyLocalBuffer #Depois que enviar para o Zabbix Server, mantem por x horas.
+    ProxyOfflineBuffer=24 #24 horas caso nao consiga comunicacao com o zabbix server.
+    ConfigFrequency=300 #Busca quais hosts o proxy vai monitorar no zabbix server. 300 segundos nesse exemplo. Padrao=3600.
+    #DataSenderFrequency=1 #Frequencia que o zabbix proxy envia pro zabbix server. Padrao 1, de preferencia deixar assim.
+    systemctl enable --now zabbix-proxy #Iniciar junto do SO.
+    systemctl status zabbix-proxy
+    tail -f /var/log/zabbix/zabbix_proxy.log #log 
+    #17504:20200621:213515.521 cannot send proxy data to server at "192.168.0.116": proxy "docker1" not found
+    #No Front End do Zabbix > Administration > Proxies > New Proxy
+    #Name=system.hostname / Mode=Active
+    #Validar coluna Last Seen, caso OK, vai estar alguns segundos.
+    

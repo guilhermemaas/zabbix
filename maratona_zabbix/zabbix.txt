@@ -1,0 +1,40 @@
+#------------------------------------------
+#Zabbix:
+#------------------------------------------
+Usuario padrao: Admin
+Senha padrao: zabbix
+
+------------------------------------------
+Alterar senha padrao do admin: 
+------------------------------------------
+Administration > Users
+
+------------------------------------------
+Exemplo de coleta
+------------------------------------------
+Coleta de CPU do servidor XYZ.
+
+Tabela de History:
+00:10 - 40.0
+00:20 - 40.5
+00:30 - 41.4
+00:40 - 60.0
+00:50 - 62.0
+01:00 - 65.7
+
+Tabela de Trands:
+- Sumarizacao de hora em hora
+6 registros da tabela History
+4 registros:
+- Min
+- Max
+- Avg: Media dos valores
+- Count: 6
+
+------------------------------------------
+House Keeping
+------------------------------------------
+History:
+Padrao, por volta de 30 dias.
+Trends:
+Padrao, por volta de 365 dias.
