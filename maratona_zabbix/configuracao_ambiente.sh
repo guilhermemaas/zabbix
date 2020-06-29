@@ -1,11 +1,11 @@
 #UBUNTU SERVER 18.04
-#IPs:
 #VMs:
-    #Stack/Services Docker: 192.168.0.116 / firewall1
+    #Stack/Services Docker: firewall1
         #Grafana:
         #Zabbix-Server:
         #Zabbix-FrontEnd:
-    #Proxy Server: 192.168.0.114 / docker1
+    #Proxy Server: docker1
+    #PostreSQL: docker2
 #MySQL:
     #192.168.0.113 / ilhanublar-desktop
 #------------------------------------------
@@ -41,6 +41,8 @@ flush privileges;
     #Comentar a linha abaixo:
     /etc/mysql/mariadb.conf.d/50-server.cnf
     #bind-address            = 127.0.0.1
+
+
 #------------------------------------------
 #VM Docker:
 #------------------------------------------
@@ -96,12 +98,14 @@ docker service ls
 docker service logs -f maratonazabbix_zabbix-server
 #IP VM:80 -> Zabbix
 #IP VM:3000 -> Grafana
+
+
 #------------------------------------------
 #Zabbix Proxy:
 #------------------------------------------
 apt install zabbix-proxy-sqlite3
 http://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix/zabbix-proxy-sqlite3_5.0.0-1%2Bbionic_amd64.deb
-https://www.zabbix.com/documentation/4.0/manual/installation/install_from_packages/debian_ubuntu
+https://www.zabbix.com/documentation/4.0/manual/installation/install_from_packages/debian_ubuntu #Conforme versao, alterar o diretorio
 cd /etc/zabbix
 mkdir /var/lib/zabbix
 cd /var/lib/
@@ -116,7 +120,7 @@ vim zabbix_proxy.conf
     #ServerPort=10051 #Pode deixar comentado, a requisicao quando chegar no server docker, vai direcionar para o container server-zabbix na porta 10051
     #Hostname=Zabbix proxy #Pode deixar comentado, vai pegar do HostnameItem=system.hostname, que no caso seria o hostname do servidor.
     EnableRemoteCommands=1 #No zabbix proxy nao foi depriciado esse comando como no agent.
-    DBName=/var/lib/zabbix/zabbix.db #TEm que remover quando for iniciar o server, ou atualizar.
+    DBName=/var/lib/zabbix/zabbix.db #Tem que remover quando for iniciar o server, ou atualizar.
     DBUser=zabbix
     #DBPassword e ignorado quando e SQLite.
     #ProxyLocalBuffer #Depois que enviar para o Zabbix Server, mantem por x horas.
@@ -131,3 +135,60 @@ vim zabbix_proxy.conf
     #Name=system.hostname / Mode=Active
     #Validar coluna Last Seen, caso OK, vai estar alguns segundos.
     systemctl restart zabbix-proxy #Reiniciar depois de alterar o conf.
+#Liberar porta 10051 no firewall. Se for CentOS verificar selinux.
+apt install firewalld
+firewall-cmd --permanent --add-port=10051/tcp
+
+
+#------------------------------------------
+#PostgreSQL Server:
+#------------------------------------------
+wget http://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix/zabbix-agent2_5.0.0-1%2Bbionic_amd64.deb
+dpkg -i zabbix-agent2_5.0.0-1+bionic_amd64.deb
+    /etc/zabbix/zabbix_agent2.conf
+        Server/ServerActive = IP Server Proxy
+        #Hostname=Zabbix server
+        HostMetadataItem=system.uname
+        Timeout=30
+systemctl enable --now zabbix-agent2
+systemctl status zabbix-agent2
+#Liberar porta 10050 no firewall. Se for CentOS verificar selinux.
+apt install firewalld
+firewall-cmd --permanent --add-port=10050/tcp
+#Adicionar grupo para os servers PostgreSQL
+#Adicionar Host PostgreSQL no Zabbix-FrontEnd
+    #No servidor de Proxy, testar se o agent no server PostgreSQL esta respondendo:
+    zabbix_get -s 192.168.0.116 -p 10050 -k "system.uname" #Se nao tiver: apt install zabbix-get / https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1%2Bbionic_all.deb
+apt install postgresql 
+ps aux | grep postgresql 
+systemctl status postgresql 
+nmap -p 5432 localhost
+systemctl enable postgresql
+#testar a chave proc.num pra pegar se o processo do PostgreSQL esta rodando no server:
+    root@docker2:/var/log/zabbix# zabbix_agent2 -t proc.num[,postgres]
+    proc.num[,postgres]                          [s|7]
+    #No Proxy:
+        root@docker1:/var/log/zabbix# zabbix_get -s 192.168.0.116 -p 10050 -k "proc.num[,postgres]"
+        7
+    #Pegar so o processo do Autovacuum:
+    root@docker2:/var/log/zabbix# ps aux| grep postgres | grep autovacuum
+    postgres 13512  0.0  0.3 319176  6880 ?        Ss   00:32   0:00 postgres: 10/main: autovacuum launcher process
+    root@docker2:/var/log/zabbix# zabbix_agent2 -t proc.num[,postgres,,logger]
+    proc.num[,postgres,,logger]                   [s|0]
+    #Obs.: Se o "grep" tiver um espaco no nome do processo, tem que colocar entre "" nos parametros da key, exemplo: proc.num[,postgres,,"background writer"]
+#Criar um template pra adicionar itens que pegam os status dos processos do PostgreSQL.
+#Associar host ao template
+#Monitorar a porta do PostgreSQL, 5432/TCP, criar um item pra isso, no template:
+    net.tcp.service[service,<ip>,<port>] #sem IP, pois vai ser localhost onde o agent roda.
+    #http://192.168.0.114/zabbix.php?action=valuemap.list -> Mapeamento de valores - Show values
+    #0 False, 1 True
+    #Teste a partir do Proxy:
+    root@docker1:/var/log/zabbix# zabbix_get -s 192.168.0.116 -p 10050 -k "net.tcp.service[tcp,,5432]"
+    1
+#Liberar porta 5432 para outros hosts da rede(Recomendado se o banco estiver atras de um firewall):
+    #no pg_hba.conf:
+    #host all all 0.0.0.0/0 trust
+    #no postgresql.conf
+    listen_addresses = '*'
+    systemctl restart postgresql
+    

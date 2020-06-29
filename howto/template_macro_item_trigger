@@ -1,0 +1,30 @@
+Template - Perfil de monitoramento.
+    Vincultar um host em cima do template.
+    
+Macro:
+    Global  
+    Por template
+    Por host
+
+Item:
+    Units:
+        % para flot em uso de CPU por exemplo.
+        B ou Bps a cada 1000 o Zabbix vai dividir por 1024.
+            Exemplo:
+                1024 - 1Byte
+        Qualquer unidade diferente de B ou Bps, a cada 1000, ele vai dividir por 1000.
+            Exemplo: 
+                1000 - 1K
+                10000 - 10M
+    Do server Proxy ou Server, pode-se utilizar o zabbix-get pra testar o retorno das chaves:
+        zabbix_get -s 192.168.0.116 -p 10050 -k "system.uname"
+    Ou no Server onde tem o agent:
+        zabbix_agent2 -p #printa todos as chaves possiveis no host com o retorno que seria dado ao Proxy ou Server
+        zabbix_agent2 -t proc.num #uma chave especifica
+    Chaves:
+        net.udp.service[service,<ip>,<port>]
+            service - obrigatorio
+            ip, port, como estao entre <> sao obrigatorios
+
+Template - Web Scenario:
+    

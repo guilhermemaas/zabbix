@@ -33,8 +33,9 @@ Utilizado no processo de autoregistro.
 ------------------------------------------
 Resumo dos principais parametros:
 Server=IP
-ServerActive=IP
+#ServerActive=IP
 #Hostname= Zabbix Server #Comentar
+Include=/etc/zabbix/zabbix_agentd.d/*.conf
 HostMetadataItem=system.uname
 Timeout=30
 Include=mypath/.*conf
@@ -50,3 +51,5 @@ repo.zabbix.com
 cat /proc/version #Versao do OS
 http://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix/
 http://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix/zabbix-agent_5.0.1-1%2Bbionic_amd64.deb
+https://repo.zabbix.com/zabbix/4.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.0-2+bionic_all.deb ->OK
+https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1%2Bbionic_all.deb
