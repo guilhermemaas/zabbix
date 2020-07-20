@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?><teste><proxy_hostid>0</proxy_hostid><host>Template Server IBM IMM SNMPv1</host><status>3</status><disable_until>0</disable_until><error></error><available>0</available><errors_from>0</errors_from><lastaccess>0</lastaccess><ipmi_authtype>-1</ipmi_authtype><ipmi_privilege>2</ipmi_privilege><ipmi_username></ipmi_username><ipmi_password></ipmi_password><ipmi_disable_until>0</ipmi_disable_until><ipmi_available>0</ipmi_available><snmp_disable_until>0</snmp_disable_until><snmp_available>0</snmp_available><maintenanceid>0</maintenanceid><maintenance_status>0</maintenance_status><maintenance_type>0</maintenance_type><maintenance_from>0</maintenance_from><ipmi_errors_from>0</ipmi_errors_from><snmp_errors_from>0</snmp_errors_from><ipmi_error></ipmi_error><snmp_error></snmp_error><jmx_disable_until>0</jmx_disable_until><jmx_available>0</jmx_available><jmx_errors_from>0</jmx_errors_from><jmx_error></jmx_error><name>Template Server IBM IMM SNMPv1</name><flags>0</flags><templateid>10257</templateid><description>Template Server IBM IMM
+
+MIBs used:
+IMM-MIB
+
+Known Issues:
+
+  Description: Some IMMs (IMM1) do not return disks
+  Version: IMM1
+  Device: IBM x3250M3
+
+  Description: Some IMMs (IMM1) do not return fan status: fanHealthStatus
+  Version: IMM1
+  Device: IBM x3250M3
+
+  Description: IMM1 servers (M2, M3 generations) sysObjectID is NET-SNMP-MIB::netSnmpAgentOIDs.10
+  Version: IMM1
+  Device: IMM1 servers (M2,M3 generations)
+
+  Description: IMM1 servers (M2, M3 generations) only Ambient temperature sensor available
+  Version: IMM1
+  Device: IMM1 servers (M2,M3 generations)
+
+Template tooling version used: 0.34</description><tls_connect>1</tls_connect><tls_accept>1</tls_accept><tls_issuer></tls_issuer><tls_subject></tls_subject><tls_psk_identity></tls_psk_identity><tls_psk></tls_psk><proxy_address></proxy_address><auto_compress>1</auto_compress></teste>
