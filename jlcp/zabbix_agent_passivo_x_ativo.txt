@@ -1,0 +1,24 @@
+-----------------
+Zabbix Agent
+-----------------
+- Envia ao Zabbix Server ou Zabbix Proxy os itens coletados.
+
+Zabbix agent passivo:
+    - Zabbix Server conecta no Zabbix Agent e solicita a coleta dos itens.
+    - Conforme configurações do host de IP/DNS e porta.
+    - zabbix_agentd.conf 
+        Server=IP/DNS do Server/Proxy
+        ListenPort=10050 (Porta Padrão do Zabbix Agent)
+
+        Obs.: Pode-se enviar informações do Zabbix Agent para mais de 1 Zabbix.
+
+Zabbix agent ativo:
+    - O Agent conecta no Zabbix Server/Proxy e envia os itens coletados.
+    - A conexão é feita com base no nome do host configurado na interface web.
+    - zabbix_agentd.conf
+        ServerActive=IP/DNS do Server ou Proxy.
+        Hostname=<NOME_DO_HOST>
+        #HostnameItem=system.hostname
+    - Faz buff em memória caso perca comunicação com o Zabbix Server/Proxy
+        Por padrão o tamanho é de 100 valores.
+    - Envia os itens cokletados pro Zabbix Server a cada 5 segundos, ou quando o buffer ficar cheio.

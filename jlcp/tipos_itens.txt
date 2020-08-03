@@ -1,0 +1,27 @@
+------------------------
+Tipos de itens Zabbix:
+------------------------
+
+Passivos: Zabbix inicia a conexão:
+    - Zabbix Agent
+    - Simple Check (agent-less)
+    - SNMP agent - v1, v2, v3
+    - IPMI agent - Hardware de servidores
+    - JMX agent - Aplicações JAVA
+    - HTTP agent - HTTP requests
+    - SSH agent - Conexão via SSH em um server ou equipamento.
+    - TELNET agent - Conexão via Telnet em um server ou equipamento.
+    - Database Monitor - Via ODBC
+    - External Check - 
+
+Ativos: Zabbix recebe a conexão:
+    - Zabbix Agent(configurado como active)
+    - SNMP trap
+    - Zabbix trapper - Zabbix Sender
+    - HTTP agent(Enable trapping)
+
+Internos: Processado internamento pelo Zabbix
+    - Zabbix Internal
+    - Zabbix aggregate
+    - Calculated
+    - Dependent item
