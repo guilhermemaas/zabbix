@@ -1,0 +1,3707 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 2,
+  "iteration": 1603405903744,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 22,
+      "panels": [],
+      "title": "Informacoes gerais do sistema",
+      "type": "row"
+    },
+    {
+      "datasource": "Zabbix",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "$host_url - status code",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 18,
+        "x": 0,
+        "y": 1
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.2.2",
+      "repeat": "host_url",
+      "repeatDirection": "v",
+      "scopedVars": {
+        "host_url": {
+          "selected": true,
+          "text": "baggagechecks",
+          "value": "baggagechecks"
+        }
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": "Webcheck"
+          },
+          "functions": [],
+          "group": {
+            "filter": "$grupo"
+          },
+          "host": {
+            "filter": "/http://desafiozabbix.com.br/api/$host_url/"
+          },
+          "item": {
+            "filter": "Response code for step \"Tempo de resposta\" of scenario \"Verifica disponibilidade\"."
+          },
+          "options": {
+            "showDisabledItems": false,
+            "skipEmptyValues": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": 0,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2,
+            "count": true,
+            "minSeverity": 3
+          }
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": "Zabbix",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "$host_url - status code",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 18,
+        "x": 0,
+        "y": 3
+      },
+      "id": 35,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.2.2",
+      "repeatDirection": "v",
+      "repeatIteration": 1603405903744,
+      "repeatPanelId": 4,
+      "scopedVars": {
+        "host_url": {
+          "selected": true,
+          "text": "boardings",
+          "value": "boardings"
+        }
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": "Webcheck"
+          },
+          "functions": [],
+          "group": {
+            "filter": "$grupo"
+          },
+          "host": {
+            "filter": "/http://desafiozabbix.com.br/api/$host_url/"
+          },
+          "item": {
+            "filter": "Response code for step \"Tempo de resposta\" of scenario \"Verifica disponibilidade\"."
+          },
+          "options": {
+            "showDisabledItems": false,
+            "skipEmptyValues": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": 0,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2,
+            "count": true,
+            "minSeverity": 3
+          }
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": "Zabbix",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "$host_url - status code",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 18,
+        "x": 0,
+        "y": 5
+      },
+      "id": 36,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.2.2",
+      "repeatDirection": "v",
+      "repeatIteration": 1603405903744,
+      "repeatPanelId": 4,
+      "scopedVars": {
+        "host_url": {
+          "selected": true,
+          "text": "checkins",
+          "value": "checkins"
+        }
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": "Webcheck"
+          },
+          "functions": [],
+          "group": {
+            "filter": "$grupo"
+          },
+          "host": {
+            "filter": "/http://desafiozabbix.com.br/api/$host_url/"
+          },
+          "item": {
+            "filter": "Response code for step \"Tempo de resposta\" of scenario \"Verifica disponibilidade\"."
+          },
+          "options": {
+            "showDisabledItems": false,
+            "skipEmptyValues": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": 0,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2,
+            "count": true,
+            "minSeverity": 3
+          }
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Zabbix",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 18,
+        "x": 0,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "application": {
+            "filter": "Webcheck"
+          },
+          "functions": [
+            {
+              "$$hashKey": "object:631",
+              "def": {
+                "category": "Alias",
+                "defaultParams": [
+                  "/(.*)/",
+                  "$1"
+                ],
+                "name": "replaceAlias",
+                "params": [
+                  {
+                    "name": "regexp",
+                    "type": "string"
+                  },
+                  {
+                    "name": "newAlias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "/(.*)/",
+                "$__zbx_host_name - Checkin"
+              ],
+              "text": "replaceAlias(/(.*)/, $__zbx_host_name - Checkin)"
+            }
+          ],
+          "group": {
+            "filter": "3MTZ/API"
+          },
+          "host": {
+            "filter": "http://desafiozabbix.com.br/api/checkins"
+          },
+          "item": {
+            "filter": "Response time for step \"Tempo de resposta\" of scenario \"Verifica disponibilidade\"."
+          },
+          "options": {
+            "showDisabledItems": false,
+            "skipEmptyValues": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": 0,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2,
+            "count": true,
+            "minSeverity": 3
+          }
+        },
+        {
+          "application": {
+            "filter": "Webcheck"
+          },
+          "functions": [
+            {
+              "$$hashKey": "object:715",
+              "added": false,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [
+                  "/(.*)/",
+                  "$1"
+                ],
+                "name": "replaceAlias",
+                "params": [
+                  {
+                    "name": "regexp",
+                    "type": "string"
+                  },
+                  {
+                    "name": "newAlias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "/(.*)/",
+                "$__zbx_host_name - Boardings"
+              ],
+              "text": "replaceAlias(/(.*)/, $__zbx_host_name - Boardings)"
+            }
+          ],
+          "group": {
+            "filter": "3MTZ/API"
+          },
+          "host": {
+            "filter": "http://desafiozabbix.com.br/api/boardings"
+          },
+          "item": {
+            "filter": "Response time for step \"Tempo de resposta\" of scenario \"Verifica disponibilidade\"."
+          },
+          "options": {
+            "showDisabledItems": false,
+            "skipEmptyValues": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": 0,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2,
+            "count": true,
+            "minSeverity": 3
+          }
+        },
+        {
+          "application": {
+            "filter": "Webcheck"
+          },
+          "functions": [
+            {
+              "$$hashKey": "object:719",
+              "added": false,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [
+                  "/(.*)/",
+                  "$1"
+                ],
+                "name": "replaceAlias",
+                "params": [
+                  {
+                    "name": "regexp",
+                    "type": "string"
+                  },
+                  {
+                    "name": "newAlias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "/(.*)/",
+                "$__zbx_host_name - Checkin"
+              ],
+              "text": "replaceAlias(/(.*)/, $__zbx_host_name - Checkin)"
+            }
+          ],
+          "group": {
+            "filter": "3MTZ/API"
+          },
+          "host": {
+            "filter": "http://desafiozabbix.com.br/api/baggagechecks"
+          },
+          "item": {
+            "filter": "Response time for step \"Tempo de resposta\" of scenario \"Verifica disponibilidade\"."
+          },
+          "options": {
+            "showDisabledItems": false,
+            "skipEmptyValues": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": 0,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2,
+            "count": true,
+            "minSeverity": 3
+          }
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Tempo de resposta das aplicacoes",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 18,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 0,
+            "y": 2
+          },
+          "hiddenSeries": false,
+          "id": 8,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Brasil",
+              "value": "Aeroporto Brasil"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2237",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - Now"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - Now)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Checkins"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2258",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Checkins"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2309",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                },
+                {
+                  "$$hashKey": "object:2312",
+                  "added": false,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - D-1"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - D-1)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Checkins"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$host_aeroports - Checkins",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 6,
+            "y": 2
+          },
+          "hiddenSeries": false,
+          "id": 11,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Brasil",
+              "value": "Aeroporto Brasil"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2463",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - Now"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - Now)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Embarques"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2484",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                },
+                {
+                  "$$hashKey": "object:2485",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - D-1"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - D-1)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Embarques"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$host_aeroports - Embarques",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 12,
+            "y": 2
+          },
+          "hiddenSeries": false,
+          "id": 12,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Brasil",
+              "value": "Aeroporto Brasil"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2635",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - Now"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - Now)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade Despacho de bagagens"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2656",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                },
+                {
+                  "$$hashKey": "object:2657",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - D-1"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - D-1)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade Despacho de bagagens"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$host_aeroports - Despacho de Bagagens",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "Zabbix",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": [
+                {
+                  "targetBlank": true,
+                  "title": "Visao Geral Kiosks",
+                  "url": "http://192.168.0.116:3000/d/V5Gh9KpGz/3mtz-visao-geral-kiosks?orgId=1&var-grupo=$grupo&var-host=$host_aeroports&var-kiosk=All"
+                }
+              ],
+              "mappings": [
+                {
+                  "from": "1",
+                  "id": 1,
+                  "text": "Problem",
+                  "to": "9999999",
+                  "type": 2,
+                  "value": "1"
+                },
+                {
+                  "from": "0",
+                  "id": 2,
+                  "text": "OK",
+                  "to": "0",
+                  "type": 2
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 18,
+            "x": 0,
+            "y": 10
+          },
+          "hideTimeOverride": true,
+          "id": 14,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.2.2",
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Brasil",
+              "value": "Aeroporto Brasil"
+            }
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": ""
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 4,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 4
+              }
+            }
+          ],
+          "timeFrom": "1y",
+          "timeShift": null,
+          "title": "$host_aeroports - Problems Kiosk",
+          "type": "stat"
+        }
+      ],
+      "repeat": "host_aeroports",
+      "scopedVars": {
+        "host_aeroports": {
+          "selected": false,
+          "text": "Aeroporto Brasil",
+          "value": "Aeroporto Brasil"
+        }
+      },
+      "title": "$host_aeroports",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 25,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 0,
+            "y": 2
+          },
+          "hiddenSeries": false,
+          "id": 26,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeatIteration": 1603405903744,
+          "repeatPanelId": 8,
+          "repeatedByRow": true,
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Franca",
+              "value": "Aeroporto Franca"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2237",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - Now"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - Now)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Checkins"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2258",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Checkins"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2309",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                },
+                {
+                  "$$hashKey": "object:2312",
+                  "added": false,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - D-1"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - D-1)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Checkins"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$host_aeroports - Checkins",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 6,
+            "y": 2
+          },
+          "hiddenSeries": false,
+          "id": 27,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeatIteration": 1603405903744,
+          "repeatPanelId": 11,
+          "repeatedByRow": true,
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Franca",
+              "value": "Aeroporto Franca"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2463",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - Now"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - Now)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Embarques"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2484",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                },
+                {
+                  "$$hashKey": "object:2485",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - D-1"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - D-1)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Embarques"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$host_aeroports - Embarques",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 12,
+            "y": 2
+          },
+          "hiddenSeries": false,
+          "id": 28,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeatIteration": 1603405903744,
+          "repeatPanelId": 12,
+          "repeatedByRow": true,
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Franca",
+              "value": "Aeroporto Franca"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2635",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - Now"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - Now)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade Despacho de bagagens"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2656",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                },
+                {
+                  "$$hashKey": "object:2657",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - D-1"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - D-1)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade Despacho de bagagens"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$host_aeroports - Despacho de Bagagens",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "Zabbix",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": [
+                {
+                  "targetBlank": true,
+                  "title": "Visao Geral Kiosks",
+                  "url": "http://192.168.0.116:3000/d/V5Gh9KpGz/3mtz-visao-geral-kiosks?orgId=1&var-grupo=$grupo&var-host=$host_aeroports&var-kiosk=All"
+                }
+              ],
+              "mappings": [
+                {
+                  "from": "1",
+                  "id": 1,
+                  "text": "Problem",
+                  "to": "9999999",
+                  "type": 2,
+                  "value": "1"
+                },
+                {
+                  "from": "0",
+                  "id": 2,
+                  "text": "OK",
+                  "to": "0",
+                  "type": 2
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 18,
+            "x": 0,
+            "y": 10
+          },
+          "hideTimeOverride": true,
+          "id": 29,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.2.2",
+          "repeatIteration": 1603405903744,
+          "repeatPanelId": 14,
+          "repeatedByRow": true,
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Franca",
+              "value": "Aeroporto Franca"
+            }
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": ""
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 4,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 4
+              }
+            }
+          ],
+          "timeFrom": "1y",
+          "timeShift": null,
+          "title": "$host_aeroports - Problems Kiosk",
+          "type": "stat"
+        }
+      ],
+      "repeatIteration": 1603405903744,
+      "repeatPanelId": 18,
+      "scopedVars": {
+        "host_aeroports": {
+          "selected": false,
+          "text": "Aeroporto Franca",
+          "value": "Aeroporto Franca"
+        }
+      },
+      "title": "$host_aeroports",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 30,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 0,
+            "y": 2
+          },
+          "hiddenSeries": false,
+          "id": 31,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeatIteration": 1603405903744,
+          "repeatPanelId": 8,
+          "repeatedByRow": true,
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Riga",
+              "value": "Aeroporto Riga"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2237",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - Now"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - Now)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Checkins"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2258",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Checkins"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2309",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                },
+                {
+                  "$$hashKey": "object:2312",
+                  "added": false,
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - D-1"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - D-1)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Checkins"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$host_aeroports - Checkins",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 6,
+            "y": 2
+          },
+          "hiddenSeries": false,
+          "id": 32,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeatIteration": 1603405903744,
+          "repeatPanelId": 11,
+          "repeatedByRow": true,
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Riga",
+              "value": "Aeroporto Riga"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2463",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - Now"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - Now)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Embarques"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2484",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                },
+                {
+                  "$$hashKey": "object:2485",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - D-1"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - D-1)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade de Embarques"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$host_aeroports - Embarques",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 12,
+            "y": 2
+          },
+          "hiddenSeries": false,
+          "id": 33,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeatIteration": 1603405903744,
+          "repeatPanelId": 12,
+          "repeatedByRow": true,
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Riga",
+              "value": "Aeroporto Riga"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2635",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - Now"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - Now)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade Despacho de bagagens"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            },
+            {
+              "application": {
+                "filter": "Aeroporto"
+              },
+              "functions": [
+                {
+                  "$$hashKey": "object:2656",
+                  "def": {
+                    "category": "Time",
+                    "defaultParams": [
+                      "24h"
+                    ],
+                    "name": "timeShift",
+                    "params": [
+                      {
+                        "name": "interval",
+                        "options": [
+                          "24h",
+                          "7d",
+                          "1M",
+                          "+24h",
+                          "-24h"
+                        ],
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "24h"
+                  ],
+                  "text": "timeShift(24h)"
+                },
+                {
+                  "$$hashKey": "object:2657",
+                  "def": {
+                    "category": "Alias",
+                    "defaultParams": [
+                      "/(.*)/",
+                      "$1"
+                    ],
+                    "name": "replaceAlias",
+                    "params": [
+                      {
+                        "name": "regexp",
+                        "type": "string"
+                      },
+                      {
+                        "name": "newAlias",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "params": [
+                    "/(.*)/",
+                    "$1 - D-1"
+                  ],
+                  "text": "replaceAlias(/(.*)/, $1 - D-1)"
+                }
+              ],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": "Quantidade Despacho de bagagens"
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 0,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 3
+              }
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$host_aeroports - Despacho de Bagagens",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "Zabbix",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": [
+                {
+                  "targetBlank": true,
+                  "title": "Visao Geral Kiosks",
+                  "url": "http://192.168.0.116:3000/d/V5Gh9KpGz/3mtz-visao-geral-kiosks?orgId=1&var-grupo=$grupo&var-host=$host_aeroports&var-kiosk=All"
+                }
+              ],
+              "mappings": [
+                {
+                  "from": "1",
+                  "id": 1,
+                  "text": "Problem",
+                  "to": "9999999",
+                  "type": 2,
+                  "value": "1"
+                },
+                {
+                  "from": "0",
+                  "id": 2,
+                  "text": "OK",
+                  "to": "0",
+                  "type": 2
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 18,
+            "x": 0,
+            "y": 10
+          },
+          "hideTimeOverride": true,
+          "id": 34,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "last"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.2.2",
+          "repeatIteration": 1603405903744,
+          "repeatPanelId": 14,
+          "repeatedByRow": true,
+          "scopedVars": {
+            "host_aeroports": {
+              "selected": false,
+              "text": "Aeroporto Riga",
+              "value": "Aeroporto Riga"
+            }
+          },
+          "targets": [
+            {
+              "application": {
+                "filter": ""
+              },
+              "functions": [],
+              "group": {
+                "filter": "$grupo"
+              },
+              "host": {
+                "filter": "$host_aeroports"
+              },
+              "item": {
+                "filter": ""
+              },
+              "options": {
+                "showDisabledItems": false,
+                "skipEmptyValues": false
+              },
+              "proxy": {
+                "filter": ""
+              },
+              "queryType": 4,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "table": {
+                "skipEmptyValues": false
+              },
+              "tags": {
+                "filter": ""
+              },
+              "trigger": {
+                "filter": ""
+              },
+              "triggers": {
+                "acknowledged": 2,
+                "count": true,
+                "minSeverity": 4
+              }
+            }
+          ],
+          "timeFrom": "1y",
+          "timeShift": null,
+          "title": "$host_aeroports - Problems Kiosk",
+          "type": "stat"
+        }
+      ],
+      "repeatIteration": 1603405903744,
+      "repeatPanelId": 18,
+      "scopedVars": {
+        "host_aeroports": {
+          "selected": false,
+          "text": "Aeroporto Riga",
+          "value": "Aeroporto Riga"
+        }
+      },
+      "title": "$host_aeroports",
+      "type": "row"
+    }
+  ],
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "3MTZ/API",
+          "value": "3MTZ/API"
+        },
+        "datasource": "Zabbix",
+        "definition": "Zabbix - group",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "grupo",
+        "options": [],
+        "query": {
+          "application": "",
+          "group": "/.*/",
+          "host": "",
+          "item": "",
+          "queryType": "group"
+        },
+        "refresh": 1,
+        "regex": "3MTZ/API",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "baggagechecks",
+            "boardings",
+            "checkins"
+          ],
+          "value": [
+            "baggagechecks",
+            "boardings",
+            "checkins"
+          ]
+        },
+        "datasource": "Zabbix",
+        "definition": "Zabbix - host",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "host_url",
+        "options": [],
+        "query": {
+          "application": "",
+          "group": "$grupo",
+          "host": "/.*/",
+          "item": "",
+          "queryType": "host"
+        },
+        "refresh": 1,
+        "regex": "/http.*/api/(.*)/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "Zabbix",
+        "definition": "Zabbix - host",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "host_aeroports",
+        "options": [],
+        "query": {
+          "application": "",
+          "group": "$grupo",
+          "host": "/.*/",
+          "item": "",
+          "queryType": "host"
+        },
+        "refresh": 1,
+        "regex": "/Aeroporto*/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "3MTZ - Visao Geral Aplicacoes",
+  "uid": "ZuU5_FtMk",
+  "version": 26
+}
