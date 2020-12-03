@@ -1,0 +1,77 @@
+#Cache do Front-end:
+É o serviço do Syncer que gerencia, atualiza a cada 60 segundos.
+
+ps aux | grep zabbix | grep "configuration syncer"
+zabbix      1700  0.0  0.3 186340  7316 ?        S    14:12   0:06 /usr/sbin/zabbix_server: configuration syncer [synced configuration in 0.070592 sec, idle 60 sec]
+
+=========================================
+#Zabbix Server CLI:
+=========================================
+zabbix_server -R config_cache_reload
+1700:20201022:221349.416 forced reloading of the configuration cache -> Zabbix LOG
+#R - Run Time Control
+
+zabbix_server -R housekeeper_execute
+ 1701:20201022:221526.434 housekeeper [deleted 0 hist/trends, 0 items/triggers, 0 events, 0 problems, 0 sessions, 0 alarms, 0 audit, 0 records in 0.00805
+
+ #zabbix_server --help
+
+ grep -i debug /etc/zabbix/zabbix_server.conf
+
+ ### Option: DebugLevel
+#       Specifies debug level:
+#        4 - for debugging (produces lots of information)
+#       5 - extended debugging (produces even more information)
+#  DebugLevel=3
+#       Only works if DebugLevel set to 3, 4 or 5.
+
+#Aumenta log level
+zabbix_server -R log_level_increse
+
+#Diminui log level
+zabbix_server -R log_level_decrease
+
+#Seta um log level específico
+zabbix_server -R log_level_increase=3
+
+#Sobre um nível de log level para um serviço específico:
+zabix_server log_level_increase="configuration syncer"
+###
+[root@localhost ~]# zabbix_server -R log_level_increase="configuration syncer"
+zabbix_server [12898]: command sent successfully
+[root@localhost ~] tail -f -n 1 /var/log/zabbix/zabbix_server.log
+1700:20201022:225209.976 log level has been increased to 4 (debug)
+
+
+=========================================
+#Zabbix Agent CLI:
+=========================================
+
+#Printa todas as opções
+zabbix_agentd -p
+zabbix_agentd -p | less
+
+#Testa uma chave localmente
+zabbix_agentd -t system.cpu.num
+system.cpu.num                                [u|1]
+root@localhost ~]# zabbix_agentd -t system.cpu.num[max]
+system.cpu.num[max]                           [u|1]
+[root@localhost ~]# zabbix_agentd -t system.cpu.num[online]
+system.cpu.num[online]                        [u|1]
+
+--
+top | head -n1
+top - 07:12:42 up 16 min,  2 users,  load average: 0,03, 0,11, 0,11
+                                                   1min, 5min, 15min
+
+#Gerar um processamento para teste:
+cat /dev/random | md5sum
+--
+zabbix_agentd -t system.hostname
+[root@localhost ~]# zabbix_agentd -t system.hostname
+system.hostname                               [s|localhost.localdomain]
+[root@localhost ~]# zabbix_agentd -t system.uname
+system.uname                                  [s|Linux localhost.localdomain 4.18.0-193.el8.x86_64 #1 SMP Fri May 8 10:59:10 UTC 2020 x86_64]
+
+#Retorna versao
+zabbix_agentd -V 
