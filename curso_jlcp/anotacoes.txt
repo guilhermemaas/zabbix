@@ -46,6 +46,7 @@ zabbix_server [12898]: command sent successfully
 =========================================
 #Zabbix Agent CLI:
 =========================================
+Porta padrão do Zabbix Agent: 10051.
 
 #Printa todas as opções
 zabbix_agentd -p
@@ -75,3 +76,150 @@ system.uname                                  [s|Linux localhost.localdomain 4.1
 
 #Retorna versao
 zabbix_agentd -V 
+
+
+=========================================
+#Triggers:
+=========================================
+Triggers expression:
+https://www.zabbix.com/documentation/4.0/pt/manual/config/triggers/expression
+
+{<server>:<key>.<function>(<parameter>)}<operator><constant>
+<server> = host
+<key> = cahve unica do item
+<function> = funcoes (last,avg, etc)
+    sum(#5) = Soma dos últimos cinco valores.
+    last(#2) = Penúltimo valor coletado.
+    sum(600) = Sumarização de todos os itens nos últimos 600 segundos.
+(<parameters>) = Parametros
+
+Dependência de triggers:
+https://www.zabbix.com/documentation/4.0/pt/manual/config/triggers/dependencies
+
+
+=========================================
+#Macros:
+=========================================
+Macros: 
+{HOST.NAME} - XPTO ({ITEM.VALUE}) - Acima de {$CPU_HIGH}
+
+Três tipos:
+Padrão: {MACRO} 
+Usuário: {$MACRO}
+    Global: Administration > General > Macros, Template, Host
+    Host sobescreve da template, e template sobescreve global. Host > Template < Global
+LLD: {#MACRO}
+
+=========================================
+#Proxy:
+=========================================
+Zabbix Proxy precisa estar na mesma versão do Zabbix Server
+Server 5.0 e Proxy 5.0 - Fuciona.
+Server 5.0 e Proxy 4.4 - Não funciona.
+
+-------------
+Passivo: O Zabbix Server conecta no Zabbix Proxy e envia as configurações.
+Porta padrão do Zabbix Proxy: 10051.
+No arquivo de configuração do Zabbix ServeR(zabbix_server.conf).
+
+#StartProxyPollers=1
+#ProxyConfigFrequency=3600
+#ProxyDataFrequency=1
+
+-------------
+Ativo(Padrão): O Zabbix Proxy conecta no Zabbix Server e solicita as configurações.
+
+---Instalação no CentOS 8:
+rpm -ivh http://repo.zabbix.com/zabbix/5.x/rhel/8/x86_64/zabbix-release-5.x-x.xxx.xxxxx.rpm
+-i = install
+-v = --quiet + --verbose + --version
+h =  --hash: print hash marks as package installs(good with -v)
+dnf clean all
+dnf install -y zabbix-proxy-sqlite3 zabbix-agent -zabbix-get zabbix-sender
+
+mkdir /var/lib/zabbix
+cd /var/lib
+chown zabbix. -R zabbix/
+
+vim /etc/zabbix/zabbix_proxy.conf:
+ProxyMode = 0 #0 - Active, 1-Passive
+Server=
+    Se está como ativo precisa ser um único endereço.
+    Se está como passivo: Pode ser adicionado vários endereços. Por exemplo, de uma pool de um cluster de Zabbix Server com Docker.
+        Exemplo: Server=192.168.1.15, 192.168.1.0/24, zabbix.mon.xpto.com.br
+Hostname=Nome_que_eu_definir
+    Se nao estiver de acordo como gostaria. Caso contrario, pode pegar do hostname da maquina(Comentar a chave Hostname):
+        Descomentar HostnameItem=system.hostname
+DBName=/var/lib/zabbix/zabbix.db
+
+----Configurações de retenção:
+ProxyLocalBuffer=0 #em horas
+    Quanto tempo vai reter no Proxy, localmente, mesmo após enviar para o server.
+ProxyOfflineBuffer=24 #24 horas
+HeartbeatFrequency= 60 #Envia uma mensagem pro Server informando que está disponível(Availability).
+ConfigFrequency= 300 #Com qual frequência um Proxy ativo vai ir no Server buscar as configs.
+DataSenderFrequency=1 #A cada 1 segundo o proxy irá encaminhar para o Server. Se for Ativo. Passivo o Server que coleta.
+
+OBS.: Na primeira vez que ele inicia, cria o banco de dados.
+    Se for atualizar a versão do banco, apagar o banco sqlite, que ele vai criar um novo quando iniciar a primeira vez após atualização.
+
+
+tail -f -n 500 /var/log/zabbix/zabbix_proxy.log | less (Paginar o log)
+
+
+----troubleshooting
+
+Liberar porta 10051 no server:
+    firewall-cmd --permanent --add-port=10051/tcp
+    firewall-cmd --reload
+
+"Cannot send proxy data to server at "IP": proxy "HOSTNAME" not found
+    R: Precisa cadastrar o proxy:
+        Administration > Proxies > Create Proxy.
+            Ativo permite só colocar o nome. Ele que vem no Server.
+            Passivo: Nome e IP.
+            Obs.: O nome precisa ser igual.
+    systemctl restart zabbix-proxy
+
+zabbix_proxy -R config_cache_reload #(R = Runtime) Só funciona pra ativo.
+
+
+----Zabbix Agent no Proxy:
+Server=127.0.0.1 #Ele vai estar sendo monitorado pelo próprio proxy, ou seja, localhost.
+
+
+=========================================
+#Zabbix Get:
+=========================================
+Sintaxe:
+zabbix_get -s host-or-ip -p Porta -I IP(Origem, se o servidor tiver mais de um IP) -k item-key
+zabbix_get -v = version
+
+zabbix_get -s 10.0.0.103 -p 10050 -k system.uname
+
+----troubleshooting
+
+Check access restrictions in Zabbix agent configuration
+    R: Deixou monitorando a partir do Server. Se estiver Proxy, rodar no Proxy.
+
+
+=========================================
+#Items:
+=========================================
+
+https://www.zabbix.com/documentation/4.0/manual/appendix/items/supported_by_platform
+
+
+
+
+=========================================
+#External Checks:
+=========================================
+
+=========================================
+#UserParameters:
+=========================================
+
+=========================================
+#SNMP:
+=========================================
