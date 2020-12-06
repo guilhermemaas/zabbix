@@ -477,4 +477,34 @@ key:
 =========================================
 #External Checks:
 =========================================
+Sintaxe:
 
+nome_script[param1, param2]
+
+Se não tiver parâmetro:
+    nome_script[]
+    nome_script
+
+No Zabbix Server ou Proxy
+ExternalScripts=/usr/lib/zabbix/externalscripts
+
+---Se o script depender de variáveis de ambiente deve ser adicionadas no .bashrc do usuário Zabbix.
+--- Utiliza a chave "Option: Timeout
+    Timeout=3, maximo 30.
+
+
+=========================================
+#Triggers:
+=========================================
+
+Count:
+
+{Template Mod Triggers:triggers.count(#3,10,eq)}=3
+
+9 = 10 ? N
+5 = 10 ? N  
+10 = 10 ? S
+
+Contador = 0 + 0 + 1 = 1
+
+Trigger permanece ativa. Teria que ser 10, 10, 10.
