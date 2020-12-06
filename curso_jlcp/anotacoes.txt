@@ -209,17 +209,272 @@ Check access restrictions in Zabbix agent configuration
 
 https://www.zabbix.com/documentation/4.0/manual/appendix/items/supported_by_platform
 
+Ativos e Passivos:
+https://www.zabbix.com/documentation/3.0/pt/manual/appendix/items/activepassive
 
+
+=========================================
+#UserParameters:
+=========================================
+Time out para o comando:
+Padrão = 3 segundos.
+Máximo = 30 segundos.
+
+Sintaxe:
+UserParameter=<key>,<command>
+
+Simples:
+UserParameter=chave,echo "Teste"
+
+Flexível(Com parâmetros):
+UserParameter=chave.flex[*],echo $1
+
+Include=/etc/zabbix/zabbix_agentd.d/*.conf
+Pode ler todos os arquivos deste diretório.
+
+UnsafeUserParameters=0
+Allow all characters to be passed in arguments to user-defined parameters
+\ ' " ` * ? [ ] { } ~ $ ! & ; ( ) < > | # @ 
+=
+UserParameter=ip.local,ifconfig enp0s3 | grep inet | head -n 1 | awk '{print $2}'
+[root@localhost zabbix_agentd.d]# zabbix_agentd -t ip.local
+ip.local                                      [t|192.168.0.124]
+
+zabbix_get -s IP -k ip.local (A partir do Proxy)
+
+--
+
+UserParameter=ip.local.filter[*],ifconfig $1 | grep inet | head -n 1 | awk '{print $$2}'
+
+
+=========================================
+#Zabbix Trapper:
+=========================================
+
+----Zabbix Trapper, Zabbix Sender
+
+zabbix_sender -V
+
+http://repo.zabbix.com/zabbix/5.0/rhel/8/x86_64/zabbix-sender-5.0.4-1.el8.x86_64.rpm
+rpm -ivh zabbix-sender-5.0.4-1.el8.x86_64.rpm
+Se instalar o repo com all packages:
+    dnf install -y zabbix-sender
+
+Obs.:
+    - Bom quando o item pode demorar mais de 30 segundos.
+    - Existem libs para incorporar no código o monitoramento.
+    - Itens do tipo Zabbix Trapper
+        - A chave precisa estar criada no host, para o sender enviar.
+
+zabbix_sender -z 127.0.0.1 -s "Server Linux IP Local" -k texto.livre -o "Texto Livre XPTO123
+-z = Server Zabbix
+-s = Hostname cadastrado no FrontEnd(Não IP ou DNS)
+-k = Chave do item
+-o = Valor
+
+
+=========================================
+#SNMP:
+=========================================
+Simple Network Management Protocol
+
+SNMP GET - 161/UDP
+    Gerente - NMS, Network Monitoring System (Zabbix) -->> Agente(Dispositivo de rede)
+
+SNMP TRAP - 162/UDP
+    Agente(Dispositivo de rede) -->> Gerente - NMS, Network Monitoring Syncer (Zabbix)
+
+SMI - Structure of Management information
+    - Define um conjunto de objetos que serão relacionados na MIB.
+    - Divido em 3 partes:
+        - MODULE-IDENTITY = Descrever as informações da MIB.
+        - OBJECT-TYPE = Descreve os objetos gerenciados(É aqui que vamos monitorar)
+        - NOTIFICATION-TYPE = Descreve os objetos de notificação(ENVIA-TRAP)
+
+MIB - Management Information Base(MIB)
+    - Define quais informações podem ser coletadas
+    - Estrutura Hierárquica
+    - OID - Object ID 
+
+V1, V2, V3 - V3
+    V1
+        - Limite de 1 Gerente
+        - Contadores limitados a 32 bits.
+        - Controle de acesso baseado em comunidade
+    V2
+        - Chamada de SNMPv2c
+        - Pode-se ter mais de um gerente
+        - Introduzido o GetBulkRequest(Fazer request para mais de um OID)
+        - Contadores de 64 bits
+        - Controle de acesso baseado em comunidade
+    V3
+        - Mais segurança
+        - Criptografia
+        - Autenticação
+
+----Instalar SNMP no CentOS:
+    dnf install -y net-snmp 
+    systemctl enable --now snmpd
+    dnf install -y net-snmp-utils #Instalar client snmp
+
+snmpwalk -v2c -c public 127.0.0.1 | wc -l
+#39
+
+Liberar todos os OIDs para consulta no servidor SNMP:
+    vim /etc/snmp/snmpd.conf
+    add: view   systemview  included .1 
+    systemctl snmpd restart
+
+snmpwalk -v2c -c public 127.0.0.1 | wc -l
+6232
+
+#Lista OIDs e tipo de dado
+snmpwalk -On -v2c -c public 127.0.0.1
+
+#Lista OID e nome:
+[root@localhost ~]# snmptranslate .1.3.6.1.2.1.104.1.2.1.0
+SCTP-MIB::sctpRtoAlgorithm.0
+ 
+
+[root@localhost ~]# snmpwalk -v2c -c public 127.0.0.1 ifTable
+IF-MIB::ifIndex.1 = INTEGER: 1
+IF-MIB::ifIndex.2 = INTEGER: 2
+IF-MIB::ifDescr.1 = STRING: lo
+IF-MIB::ifDescr.2 = STRING: enp0s3
+IF-MIB::ifType.1 = INTEGER: softwareLoopback(24)
+IF-MIB::ifType.2 = INTEGER: ethernetCsmacd(6)
+IF-MIB::ifMtu.1 = INTEGER: 65536
+IF-MIB::ifMtu.2 = INTEGER: 1500
+IF-MIB::ifSpeed.1 = Gauge32: 10000000
+IF-MIB::ifSpeed.2 = Gauge32: 1000000000
+IF-MIB::ifPhysAddress.1 = STRING: 
+IF-MIB::ifPhysAddress.2 = STRING: 8:0:27:c8:71:9d
+IF-MIB::ifAdminStatus.1 = INTEGER: up(1)
+IF-MIB::ifAdminStatus.2 = INTEGER: up(1)
+IF-MIB::ifOperStatus.1 = INTEGER: up(1)
+IF-MIB::ifOperStatus.2 = INTEGER: up(1)
+IF-MIB::ifLastChange.1 = Timeticks: (0) 0:00:00.00
+IF-MIB::ifLastChange.2 = Timeticks: (0) 0:00:00.00
+IF-MIB::ifInOctets.1 = Counter32: 37210461
+IF-MIB::ifInOctets.2 = Counter32: 51293834
+IF-MIB::ifInUcastPkts.1 = Counter32: 569865
+IF-MIB::ifInUcastPkts.2 = Counter32: 124328
+IF-MIB::ifInNUcastPkts.1 = Counter32: 0
+IF-MIB::ifInNUcastPkts.2 = Counter32: 5914
+IF-MIB::ifInDiscards.1 = Counter32: 0
+IF-MIB::ifInDiscards.2 = Counter32: 11
+IF-MIB::ifInErrors.1 = Counter32: 0
+IF-MIB::ifInErrors.2 = Counter32: 0
+IF-MIB::ifInUnknownProtos.1 = Counter32: 0
+IF-MIB::ifInUnknownProtos.2 = Counter32: 0
+IF-MIB::ifOutOctets.1 = Counter32: 37210461
+IF-MIB::ifOutOctets.2 = Counter32: 33858197
+IF-MIB::ifOutUcastPkts.1 = Counter32: 569865
+IF-MIB::ifOutUcastPkts.2 = Counter32: 116673
+IF-MIB::ifOutNUcastPkts.1 = Counter32: 0
+IF-MIB::ifOutNUcastPkts.2 = Counter32: 0
+IF-MIB::ifOutDiscards.1 = Counter32: 0
+IF-MIB::ifOutDiscards.2 = Counter32: 0
+IF-MIB::ifOutErrors.1 = Counter32: 0
+IF-MIB::ifOutErrors.2 = Counter32: 0
+IF-MIB::ifOutQLen.1 = Gauge32: 0
+IF-MIB::ifOutQLen.2 = Gauge32: 0
+IF-MIB::ifSpecific.1 = OID: SNMPv2-SMI::zeroDotZero
+IF-MIB::ifSpecific.2 = OID: SNMPv2-SMI::zeroDotZero
+
+snmpwalk -v2c -c public 127.0.0.1 | less
+#less = Abre em paginação para ir visualizando.
+
+[root@localhost ~]# snmpwalk -v2c -c public 127.0.0.1 sysDescr
+SNMPv2-MIB::sysDescr.0 = STRING: Linux localhost.localdomain 4.18.0-193.el8.x86_64 #1 SMP Fri May 8 10:59:10 UTC 2020 x86_64
+
+[root@localhost ~]# snmpwalk -v2c -c public 127.0.0.1 sysDescr
+SNMPv2-MIB::sysDescr.0 = STRING: Linux localhost.localdomain 4.18.0-193.el8.x86_64 #1 SMP Fri May 8 10:59:10 UTC 2020 x86_64
+
+[root@localhost ~]# snmpwalk -On -v2c -c public 127.0.0.1 SNMPv2-MIB::sysDescr.0
+.1.3.6.1.2.1.1.1.0 = STRING: Linux localhost.localdomain 4.18.0-193.el8.x86_64 #1 SMP Fri May 8 10:59:10 UTC 2020 x86_64
+
+http://oid-info.com/get/1.3.6.1.2.1.1.1
+https://oidref.com/1.3.6.1.2.1.1.1
+
+Description: 	
+sysDescr OBJECT-TYPE
+SYNTAX DisplayString (SIZE (0..255))
+MAX-ACCESS read-only
+STATUS current
+DESCRIPTION
+"A textual description of the entity. This value should
+include the full name and version identification of
+the system's hardware type, software operating-system,
+and networking software."
+
+[root@localhost ~]# snmpwalk -On -v2c -c public 127.0.0.1 1.3.6.1.2.1.1.1
+.1.3.6.1.2.1.1.1.0 = STRING: Linux localhost.localdomain 4.18.0-193.el8.x86_64 #1 SMP Fri May 8 10:59:10 UTC 2020 x86_64
+
+----Recarregar o cache após realizar cadastro na template, host, item, etc:
+[root@localhost ~]# zabbix_server -R config_cache_reload
+zabbix_server [53508]: command sent successfully
+
+---
+[root@localhost ~]# snmpwalk -On -v2c -c public 127.0.0.1 1.3.6.1.2.1.1.5
+.1.3.6.1.2.1.1.5.0 = STRING: localhost.localdomain
+DESCRIPTION:
+1.3.6.1.2.1.1.5 	sysName 	0 	0 	An administratively-assigned name for this
+managed node. By convention, this is the node's
+fully-qualified domain name.
+
+
+http://www.oidview.com/mibs/0/IF-MIB.html
+
+=======LLD
+
+[root@localhost ~]# snmpwalk -On -v2c -c public 127.0.0.1 1.3.6.1.2.1.2.1
+.1.3.6.1.2.1.2.1.0 = INTEGER: 2
+
+[root@localhost ~]# snmptranslate .1.3.6.1.2.1.2.1.0
+IF-MIB::ifNumber.0
+-> No item da template utilizar: ifNumber.0
+
+
+#Descrição das interfaces de rede
+[root@localhost ~]# snmpwalk -On -v2c -c public 127.0.0.1 1.3.6.1.2.1.2.2.1.2
+.1.3.6.1.2.1.2.2.1.2.1 = STRING: lo
+.1.3.6.1.2.1.2.2.1.2.2 = STRING: enp0s3
+
+[root@localhost ~]# snmpwalk -v2c -c public 127.0.0.1 1.3.6.1.2.1.2.2.1.2
+IF-MIB::ifDescr.1 = STRING: lo
+IF-MIB::ifDescr.2 = STRING: enp0s3
+
+Zabbix:
+{#SNMPINDEX}=1, 2, 3, 4, ... 10 -> De acordo com a quantidade de interfaces no discovery, regra de descoberta
+{#SNMPVALUE}= lo, enp0s3, eth0, eth1, etc
+
+No cadastro de Dicovery Rules:
+discovery[{#SMPVALUE},.1.3.6.1.2.1.2.2.1.2]
+
+---
+
+root@localhost ~]# snmpwalk -v2c -c public 127.0.0.1 1.3.6.1.2.1.2.2.1.8
+IF-MIB::ifOperStatus.1 = INTEGER: up(1)
+IF-MIB::ifOperStatus.2 = INTEGER: up(1)
+[root@localhost ~]# snmpwalk -On -v2c -c public 127.0.0.1 1.3.6.1.2.1.2.2.1.8
+.1.3.6.1.2.1.2.2.1.8.1 = INTEGER: up(1)
+.1.3.6.1.2.1.2.2.1.8.2 = INTEGER: up(1)
+---
+http://www.oidview.com/mibs/14988/MIKROTIK-MIB.html
+
+
+=========================================
+#Simple Checks:
+=========================================
+
+name:
+    Check port $3/$1
+key:
+    net.tcp.service[tcp, 10.0.0.40,22]
 
 
 =========================================
 #External Checks:
 =========================================
 
-=========================================
-#UserParameters:
-=========================================
-
-=========================================
-#SNMP:
-=========================================
