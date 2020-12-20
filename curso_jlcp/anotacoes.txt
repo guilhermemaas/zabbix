@@ -508,3 +508,204 @@ Count:
 Contador = 0 + 0 + 1 = 1
 
 Trigger permanece ativa. Teria que ser 10, 10, 10.
+
+
+=========================================
+#Monitorando VMware:
+=========================================
+
+uuid - 
+
+/etc/zabbix/zabbix_proxy:
+StartVMwareCollectors=1
+    #Número de serviços x2 (2 Vcenter = 4 Collectors), (2 Vcenter + 2 Hypervisor = 8 Collectors)
+
+
+1 - Realizar o procedimento informado no KB da VMware, https://kb.vmware.com/s/article/2108405 ,
+habilitando a opção Config.HostAgent.plugins.solo.enableMob. Realizar esse procedimento em todos os
+Hosts ESXI acessando um à um. 2 - Criar ou informar um usuário nos hosts ESXI para realizar o
+monitoramento, o usuário só precisa da permissão de leitura;
+
+
+3 - Informar o UUID de cada host ESXI, utilizar o link http://ESXI_IP/mob/?moid=ha-
+host&doPath=hardware.systemInfo para obter os mesmos.
+
+Parar criar novos itens utilize o link de referência:
+
+Chaves de item
+vmware.hv.perfcounter[,,,]
+vmware.vm.perfcounter[,,,]
+Exemplo:
+Nome do item: CPU Usage %
+Chave do item: vmware.hv.perfcounter[{$URL},{HOST.HOST},"cpu/usage[average]",HostSystem]
+Link de referência:
+
+https://www.vmware.com/support/developer/converter-
+sdk/conv60_apireference/vim.PerformanceManager.html
+
+
+=========================================
+#Monitorando SQL Server:
+=========================================
+
+
+Monitoramento SQL Server
+Informações necessárias para conectar ao banco de dados:
+Endereço do banco: IP ou DNS
+Porta de comunicação: Padrão 1433
+Nome da instancia: Padrão MSSQLSERVER
+Usuário
+Senha
+Instalando ODBC no Centos 8
+
+dnf install -y unixODBC unixODBC-devel
+
+Instalando Driver SQL Server
+Driver 17 No Centos 7
+
+rpm -ivh https://packages.microsoft.com/rhel/8/prod/msodbcsql17-17.4.1.1-
+1.x86_64.rpm
+
+Link para maiores informações:
+https://docs.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?
+view=sql-server-ver15
+Verifica o nome do driver no arquivo /etc/odbcinst.ini
+Crie a entrada DSN no arquivo /etc/odbc.ini
+[LABMSSQL] Driver = ODBC Driver 17 for SQL Server Description = ODBC SQL Server Trace = yes
+TraceFile = /tmp/odbc_sqlserver.log Server = 10.8.100.54\MSSQLSERVER,1433 User = zabbix.monitor
+Password = Curso!Zabbix5
+Onde:
+[TESTE] - Nome da conexão (DSN), será utilizado nos itens do Zabbix
+Driver - Nome do driver que será utilizado
+Description - Breve descrição para conexão (Por exemplo: Banco de dados APP01)
+Trace - Habilitar log
+TraceFile - Caminho do log
+Server - String de conexão do banco, IP\NOME_INStANCIA,PORTA
+User - Usuário de acesso ao banco de dados
+Password - Senha de acesso ao banco de dados
+
+monitoramento_sqlserver.md 8/16/2020
+
+2 / 2
+
+Testando a comunicação
+Diferente dos demais banco de dados para testar a conexão com o banco SQL Server além do DSN é
+necesário informar o usuário e senha no comando isql
+Sintaxe: isql -v DSN usuario senha
+Extra
+Query para dar permissão ao usuário do monitoramento
+
+USE [master]
+GO
+ALTER USER [zabbix.monitor] WITH DEFAULT_SCHEMA=[dbo]
+GO
+USE [master]
+GO
+EXEC sp_addrolemember N'db_datareader', N'zabbix.monitor'
+GO
+USE [master]
+GO
+GRANT VIEW ANY DEFINITION TO "zabbix.monitor"
+GRANT VIEW ANY DATABASE TO "zabbix.monitor"
+GRANT VIEW SERVER STATE TO "zabbix.monitor"
+GO
+USE [msdb]
+GO
+ALTER USER [zabbix.monitor] WITH DEFAULT_SCHEMA=[dbo]
+GO
+USE [msdb]
+GO
+EXEC sp_addrolemember N'db_datareader', N'zabbix.monitor'
+GO
+USE [db_lab_01]
+GO
+EXEC sp_addrolemember N'db_datareader', N'zabbix.monitor'
+GO
+USE [db_lab_02]
+GO
+EXEC sp_addrolemember N'db_datareader', N'zabbix.monitor'
+GO
+USE [db_lab_03]
+GO
+EXEC sp_addrolemember N'db_datareader', N'zabbix.monitor'
+GO
+
+
+=========================================
+#Auto registro:
+=========================================
+/etc/zabbix/zabbix-agentd.conf
+ServerActive=IP do server, ou Proxy
+HostMetadata=TAG
+ou
+HostMetadataItem=system.uname
+#[root@localhost ~]# uname -a
+#Linux localhost.localdomain 4.18.0-193.el8.x86_64 #1 SMP Fri May 8 10:59:10 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+FrontEnd: Configuration > Actions > Autoregistration Actions
+
+Create Action:
+Type = Host HostMetadata
+Operator = Contain Linux
+
+
+=========================================
+#Auto descoberta:
+=========================================
+Configuration > Discovery > Discovery Rules
+Configuration > Actions > Discovery Actions
+
+/etc/zabbix/zabbix_server.conf
+StartDiscoverers=1 #Acompanhar grafico para validar se precisa iniciar mais.
+
+watch "ps aux | grep zabbix | grep disc"
+
+Monitoring > Discovery
+
+
+=========================================
+#Actions:
+=========================================
+Remote commands:
+
+vim /etc/sudoers.d/zabbix
+Defaults:zabbix !syslog
+Defaults:zabbix !requiretty
+zabbix ALL=(ALL) NOPASSWD:ALL
+
+Testar:
+su - zabbix -s /bin/bash
+sudo systemctl restart httpd
+
+
+=========================================
+#SLA:
+=========================================
+KPI - Key Performance Indicator
+
+- Nem todo KPI impacta diretamente no SLA. Exemplo:
+- Uso de CPU em %;
+- Uso de memória em %;
+
+Services: O SLA é impactado conforme triggers associadas são ativadas.
+
+Visualização: Monitoring > Services.
+
+Configuração: Configuration > Services.
+
+
+=========================================
+#Autenticação:
+=========================================
+Tipos:
+    - Interna.
+    - LDAP.
+    - HTTP.
+    - SAML -> Sistema de logon centralizado.
+
+Permissão:
+    4 grupos padrão:
+        - Guests: Para usuários limitados, não acessa nada por padrão.
+        - Disable: Não permite conexão ao Frontend e na API.
+        - Enable debug mod: Ativa a visualização de debug no frontend para o usuário.
+        - No acess to the frontend: Permite acesso na API mas não no frontend.
