@@ -45,6 +45,7 @@ def zabbix_delete_hosts(hosts: list, zabbix_api_url: str, zabbix_user: str, zabb
             print(error)
 
         print_separator()
+        host_del.clear()
         sleep(0.5)
 
 
