@@ -709,3 +709,35 @@ Permissão:
         - Disable: Não permite conexão ao Frontend e na API.
         - Enable debug mod: Ativa a visualização de debug no frontend para o usuário.
         - No acess to the frontend: Permite acesso na API mas não no frontend.
+
+
+=========================================
+#Zabbix Agent 2:
+=========================================
+https://repo.zabbix.com/zabbix/5.0/rhel/8/x86_64/zabbix-release-5.0-1.el8.noarch.rpm
+
+1 - Instalar o pacotão com as libs do Zabbix.
+https://repo.zabbix.com/zabbix/5.0/rhel/8/x86_64/zabbix-release-5.0-1.el8.noarch.rpm
+
+2 - Limpar os dados em cache.
+dnf clean all
+
+3 - Instalar o zabbix_agent2 da versão que você baixou:
+dnf -y install zabbix-agent2 
+#-y = assumeyes, Assume que a resposta para as perguntas.
+
+4 - Ativar o serviço:
+systemctl enable --now zabbix-agent2
+systemctl start zabbix-agent2
+systemctl status zabbix-agent2
+
+zabbix_agent2 -R help
+#Opções de Runtime:
+
+Confs:
+vi /etc/zabbix/zabbix_agent2.conf
+AllowKey=system.run["echo Hello Zabbix"]
+DenyKey=system.run[*]
+DenyKey=system.run*
+
+Equivalente ao EnableRemoteCommand dos antigos.
